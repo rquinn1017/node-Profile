@@ -1,0 +1,25 @@
+{
+  "name": "profile",
+  "version": "1.0.0",
+  "description": "Create a command-line application that dynamically generates a PDF profile from a GitHub username. The application will be invoked with the following command:",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "electron-html-to": "^2.6.0",
+    "inquirer": "^7.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rquinn1017/node-Profile.git"
+  },
+  "author": "Rob Quinn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rquinn1017/node-Profile/issues"
+  },
+  "homepage": "https://github.com/rquinn1017/node-Profile#readme"
+}
