@@ -369,22 +369,3 @@ promptUser()
     </html>`;
   }
   
-    // module.exports = generateHTML;
-  
-  //      <body>
-  //       <div class="jumbotron jumbotron-fluid">
-  //         <div class="container">
-  //           <h1 class="display-4">Hi! My name is ${info.name}</h1>
-  //           <h2>A Little About Me: <span class="badge badge-secondary">${info.bio}</span></h2>
-  //           <ul class="list-group">
-  //             <li class="list-group-item">Location: ${info.location}</li>
-  //             <li class="list-group-item">GitHub: ${info.profileUrl}</li>
-  //             <li class="list-group-item">Blog: <a href="${info.blog}">${info.blog}</a></li>
-  //           </ul>
-  //           <img src='${info.profilePic}' height='200px' width='200px'>
-  //         </div>
-  //       </div>
-  //      </body>    
-  //     </html lang="en">
-  //       `
-  // }
