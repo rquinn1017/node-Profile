@@ -11,7 +11,6 @@ Then a HTML page and a PDF are generated.
 
 ## Preview
 
-[![My PRofile Preview](https://github.com/rquinn1017/profile-robQuinn/blob/master/img/Screenshot%20of%20site.JPG)](https://github.com/rquinn1017/profile-robQuinn/)
+[![My PRofile Preview](https://github.com/rquinn1017/node-Profile/blob/master/nodeApplication.gif)](https://github.com/rquinn1017/node-Profile)
 
-gif of applicaiton 
-https://media.giphy.com/media/Lr3g9xeB001Ci70BWw/giphy.gif
+
