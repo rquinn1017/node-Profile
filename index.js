@@ -165,7 +165,7 @@ function generateHTML(info) {
              html, body {
              padding: 0;
              margin: 0;
-             background-color:url(");
+            
              }
              html, body, .wrapper {
              height: 100%;
@@ -174,7 +174,7 @@ function generateHTML(info) {
              padding-top: 100px;
              }
              body {
-             background-color: ${colors[info.color].wrapperBackground};
+             background-image: url("https://github.com/rquinn1017/node-Profile/blob/master/code-background.png")
              -webkit-print-color-adjust: exact !important;
              font-family: 'sans-serif;
              }
