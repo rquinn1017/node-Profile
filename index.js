@@ -169,12 +169,12 @@ function generateHTML(info) {
              }
              html, body, .wrapper {
              height: 100%;
+             background-image: url("https://wegotcode.com/wp-content/uploads/2017/01/code-background.png")
              }
              .wrapper {
              padding-top: 100px;
              }
              body {
-             background-image: url("https://github.com/rquinn1017/node-Profile/blob/master/code-background.png")
              -webkit-print-color-adjust: exact !important;
              font-family: 'sans-serif;
              }
