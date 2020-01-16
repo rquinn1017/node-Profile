@@ -60,98 +60,91 @@ promptUser()
 
           // for testing the HT
 
-            // for testing the HTML file that gets written to disk
-            fs.writeFileSync(`${username}.html`, html);
+          // for testing the HTML file that gets written to disk
+          fs.writeFileSync(`${username}.html`, html);
 
-            // https://www.npmjs.com/package/html-pdf
-            var options = { format: 'landscape' };
-            pdf.create(html, options).toFile(`${username}.pdf`, function (err, res) {
-              if (err) return console.log(err);
-              console.log(res);
-            });
-  
+          // https://www.npmjs.com/package/html-pdf
+          var options = { format: 'landscape' };
+          pdf.create(html, options).toFile(`${username}.pdf`, function (err, res) {
+            if (err) return console.log(err);
+            console.log(res);
           });
+
         });
-      // })
-      //.then(function () {
-  
-  
-  
-  
-      // })
-  
-      //.then(function () {
-    })
-    .catch(function (err) {
-      console.log(err);
-  
-    });
-  
-  
-  function generatePdf(html) {
-    let conversion = convertFactory({
-  
-      converterPath: convertFactory.converters.PDF
-  
-    });
-  
-    conversion({
-      html: html,
-      waitForJs: true,
-      waitForJsVarName: readyToConvert,
-    },
-      function (err, result) {
-        if (err) {
-          return console.log(err);
-        }
-  
-        result.stream.pipe(fs.createWriteStream(`${username}.pdf`));
-  
-        conversion.kill();
-  
-        console.log(`${username}.pdf is now available in your current directory`);
       });
+
+  })
+  .catch(function (err) {
+    console.log(err);
+
+  });
+
+
+function generatePdf(html) {
+  let conversion = convertFactory({
+
+    converterPath: convertFactory.converters.PDF
+
+  });
+
+  conversion({
+    html: html,
+    waitForJs: true,
+    waitForJsVarName: readyToConvert,
+  },
+    function (err, result) {
+      if (err) {
+        return console.log(err);
+      }
+
+      result.stream.pipe(fs.createWriteStream(`${username}.pdf`));
+
+      conversion.kill();
+
+      console.log(`${username}.pdf is now available in your current directory`);
+    });
+}
+const colors = {
+
+  orange: {
+    wrapperBackground: "orange",
+    headerBackground: "#FF8C00",
+    headerColor: "black",
+    photoBorderColor: "#FF4500"
+  },
+  yellow: {
+    wrapperBackground: "yellow",
+    headerBackground: "#FFD700",
+    headerColor: "black",
+    photoBorderColor: "#FFFF99"
+  },
+  green: {
+    wrapperBackground: "green",
+    headerBackground: "#2E8B57	",
+    headerColor: "black",
+    photoBorderColor: "#8FBC8F"
+  },
+  blue: {
+    wrapperBackground: "blue",
+    headerBackground: "#26175A",
+    headerColor: "white",
+    photoBorderColor: "#73448C"
+  },
+  pink: {
+    wrapperBackground: "pink",
+    headerBackground: "#FF8374",
+    headerColor: "white",
+    photoBorderColor: "#FEE24C"
+  },
+  red: {
+    wrapperBackground: "red",
+    headerBackground: "#870603",
+    headerColor: "white",
+    photoBorderColor: "white"
   }
-  const colors = {
-    green: {
-      wrapperBackground: "green",
-      headerBackground: "green",
-      headerColor: "black",
-      photoBorderColor: "#black"
-    },
-    orange: {
-      wrapperBackground: "orange",
-      headerBackground: "orange",
-      headerColor: "black",
-      photoBorderColor: "#black"
-    },
-    yellow: {
-      wrapperBackground: "yellow",
-      headerBackground: "yellow",
-      headerColor: "black",
-      photoBorderColor: "#black"
-    },
-    blue: {
-      wrapperBackground: "blue",
-      headerBackground: "#26175A",
-      headerColor: "white",
-      photoBorderColor: "#73448C"
-    },
-    pink: {
-      wrapperBackground: "pink",
-      headerBackground: "#FF8374",
-      headerColor: "white",
-      photoBorderColor: "#FEE24C"
-    },
-    red: {
-      wrapperBackground: "red",
-      headerBackground: "#870603",
-      headerColor: "white",
-      photoBorderColor: "white"
-    }
-  };
-  function generateHTML(info) {
-    return `<!DOCTYPE html>
+};
+function generateHTML(info) {
+  return `<!DOCTYPE html>
     <html lang="en">
        <head>
           <meta charset="UTF-8" />
@@ -172,12 +165,12 @@ promptUser()
              html, body {
              padding: 0;
              margin: 0;
+             background-color:url(");
              }
              html, body, .wrapper {
              height: 100%;
              }
              .wrapper {
-             background-color: white;
              padding-top: 100px;
              }
              body {
@@ -208,6 +201,7 @@ promptUser()
              }
              h5 {
              font-size: 1.3em;
+             text-align: center;
              }
              h6 {
              font-size: 1.2em;
@@ -224,6 +218,7 @@ promptUser()
              padding: 10px;
              width: 95%;
              border-radius: 6px;
+             text-align: center;
              }
              .photo-header img {
              width: 250px;
@@ -307,24 +302,24 @@ promptUser()
                 <h5>${info.company ? `Currently @ ${info.company}` : ""}</h5>
                 <nav class="links-nav">
                    ${
+    info.location
+      ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/${
       info.location
-        ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/${
-        info.location
-        }"><i class="fas fa-location-arrow"></i> ${
-        info.location
-        }</a>`
-        : ""
-      }
+      }"><i class="fas fa-location-arrow"></i> ${
+      info.location
+      }</a>`
+      : ""
+    }
                    <a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
-      info.profileUrl
-      }"><i class="fab fa-github-alt"></i> GitHub</a>
+    info.profileUrl
+    }"><i class="fab fa-github-alt"></i> GitHub</a>
                    ${
+    info.blog
+      ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
       info.blog
-        ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
-        info.blog
-        }"><i class="fas fa-rss"></i> Blog</a>`
-        : ""
-      }
+      }"><i class="fas fa-rss"></i> Blog</a>`
+      : ""
+    }
                 </nav>
              </div>
              <main>
@@ -367,5 +362,4 @@ promptUser()
           </div>
        </body>
     </html>`;
-  }
-  
+}
