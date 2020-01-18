@@ -14,7 +14,7 @@ function promptUser() {
     type: "list",
     message: "What's your favorite color?",
     name: "faveColor",
-    choices: ['red', 'orange', 'green', 'blue', 'yellow']
+    choices: ['red', 'orange', 'green', 'blue', 'yellow', 'pink']
   }]);
 }
 
@@ -25,7 +25,7 @@ promptUser()
     const queryUrl = `https://api.github.com/users/${username}`;
     axios
       .get(queryUrl).then(function (res) {
-        console.log(res);
+      
         info = {
           color: faveColor,
           profilePic: res.data.avatar_url,
@@ -39,11 +39,9 @@ promptUser()
           followers: res.data.followers,
           following: res.data.following,
         }
-        console.log(info);
-
+       
         const newQueryUrl = `https://api.github.com/users/${username}/repos`;
-        console.log(newQueryUrl);
-
+      
         axios.get(newQueryUrl).then(function (res) {
           let starCount = 0;
           for (let index = 0; index < res.data.length; index++) {
@@ -51,14 +49,11 @@ promptUser()
             starCount = starCount + count;
 
           }
-          console.log("Final star count for all repositories: " + starCount)
+
           info.starCount = starCount;
           const html = generateHTML(info);
 
-          console.log(`${username}.html is ready to convert to PDF`);
           readyToConvert = true;
-
-          // for testing the HT
 
           // for testing the HTML file that gets written to disk
           fs.writeFileSync(`${username}.html`, html);
@@ -67,7 +62,7 @@ promptUser()
           var options = { format: 'landscape' };
           pdf.create(html, options).toFile(`${username}.pdf`, function (err, res) {
             if (err) return console.log(err);
-            console.log(res);
+            console.log(`${username}.pdf is now available in your current directory`);
           });
 
         });
@@ -101,7 +96,7 @@ function generatePdf(html) {
 
       conversion.kill();
 
-      console.log(`${username}.pdf is now available in your current directory`);
+
     });
 }
 const colors = {
@@ -110,25 +105,25 @@ const colors = {
     wrapperBackground: "orange",
     headerBackground: "#FF8C00",
     headerColor: "black",
-    photoBorderColor: "#FF4500"
+    photoBorderColor: "#FEE24C"
   },
   yellow: {
     wrapperBackground: "yellow",
     headerBackground: "#FFD700",
     headerColor: "black",
-    photoBorderColor: "#FFFF99"
+    photoBorderColor: "white"
   },
   green: {
     wrapperBackground: "green",
     headerBackground: "#2E8B57	",
     headerColor: "black",
-    photoBorderColor: "#8FBC8F"
+    photoBorderColor: "#FEE24C"
   },
   blue: {
     wrapperBackground: "blue",
     headerBackground: "#26175A",
     headerColor: "white",
-    photoBorderColor: "#73448C"
+    photoBorderColor: "#FEE24C"
   },
   pink: {
     wrapperBackground: "pink",
@@ -317,7 +312,7 @@ function generateHTML(info) {
     info.blog
       ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
       info.blog
-      }"><i class="fas fa-rss"></i> Blog</a>`
+      }"><i class="fas fa-rss"></i> Website</a>`
       : ""
     }
                 </nav>
