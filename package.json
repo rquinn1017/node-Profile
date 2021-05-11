@@ -7,7 +7,7 @@
     "axios": "^0.19.1",
     "html-pdf": "^2.2.0",
     "inquirer": "^7.0.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "phantom-html-to-pdf": "^0.6.0"
   },
   "devDependencies": {},
